@@ -1,0 +1,204 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1>None</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 500px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 500px;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "green", "font": {"color": "white"}, "id": 1, "label": "Volta", "shape": "dot", "title": "Volta"}, {"color": "yellow", "font": {"color": "white"}, "id": 169, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 2, "label": "pile", "shape": "dot", "title": "pile"}, {"color": "green", "font": {"color": "white"}, "id": 3, "label": "Davy", "shape": "dot", "title": "Davy"}, {"color": "yellow", "font": {"color": "white"}, "id": 170, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 4, "label": "lamp", "shape": "dot", "title": "lamp"}, {"color": "green", "font": {"color": "white"}, "id": 5, "label": "Trevithick", "shape": "dot", "title": "Trevithick"}, {"color": "yellow", "font": {"color": "white"}, "id": 171, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 6, "label": "locomotive", "shape": "dot", "title": "locomotive"}, {"color": "green", "font": {"color": "white"}, "id": 7, "label": "Seish\u016b", "shape": "dot", "title": "Seish\u016b"}, {"color": "yellow", "font": {"color": "white"}, "id": 172, "label": "create", "shape": "dot", "title": "create"}, {"color": "blue", "font": {"color": "white"}, "id": 8, "label": "anesthetic", "shape": "dot", "title": "anesthetic"}, {"color": "green", "font": {"color": "white"}, "id": 35, "label": "Ni\u00e9pce", "shape": "dot", "title": "Ni\u00e9pce"}, {"color": "yellow", "font": {"color": "white"}, "id": 173, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 164, "label": "engine", "shape": "dot", "title": "engine"}, {"color": "green", "font": {"color": "white"}, "id": 11, "label": "Rivaz", "shape": "dot", "title": "Rivaz"}, {"color": "yellow", "font": {"color": "white"}, "id": 174, "label": "design", "shape": "dot", "title": "design"}, {"color": "blue", "font": {"color": "white"}, "id": 12, "label": "automobile", "shape": "dot", "title": "automobile"}, {"color": "green", "font": {"color": "white"}, "id": 13, "label": "Fulton", "shape": "dot", "title": "Fulton"}, {"color": "yellow", "font": {"color": "white"}, "id": 175, "label": "expand", "shape": "dot", "title": "expand"}, {"color": "blue", "font": {"color": "white"}, "id": 14, "label": "transportation", "shape": "dot", "title": "transportation"}, {"color": "green", "font": {"color": "white"}, "id": 15, "label": "Appert", "shape": "dot", "title": "Appert"}, {"color": "yellow", "font": {"color": "white"}, "id": 176, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 152, "label": "process", "shape": "dot", "title": "process"}, {"color": "green", "font": {"color": "white"}, "id": 17, "label": "Koenig", "shape": "dot", "title": "Koenig"}, {"color": "yellow", "font": {"color": "white"}, "id": 177, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 18, "label": "press", "shape": "dot", "title": "press"}, {"color": "green", "font": {"color": "white"}, "id": 19, "label": "Clanny", "shape": "dot", "title": "Clanny"}, {"color": "yellow", "font": {"color": "white"}, "id": 178, "label": "pioneer", "shape": "dot", "title": "pioneer"}, {"color": "blue", "font": {"color": "white"}, "id": 20, "label": "invention", "shape": "dot", "title": "invention"}, {"color": "green", "font": {"color": "white"}, "id": 21, "label": "Fox", "shape": "dot", "title": "Fox"}, {"color": "yellow", "font": {"color": "white"}, "id": 179, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 96, "label": "machine", "shape": "dot", "title": "machine"}, {"color": "green", "font": {"color": "white"}, "id": 23, "label": "Ronalds", "shape": "dot", "title": "Ronalds"}, {"color": "yellow", "font": {"color": "white"}, "id": 180, "label": "build", "shape": "dot", "title": "build"}, {"color": "blue", "font": {"color": "white"}, "id": 70, "label": "telegraph", "shape": "dot", "title": "telegraph"}, {"color": "green", "font": {"color": "white"}, "id": 25, "label": "Stirling", "shape": "dot", "title": "Stirling"}, {"color": "yellow", "font": {"color": "white"}, "id": 181, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 27, "label": "Drais", "shape": "dot", "title": "Drais"}, {"color": "yellow", "font": {"color": "white"}, "id": 182, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 28, "label": "horse", "shape": "dot", "title": "horse"}, {"color": "green", "font": {"color": "white"}, "id": 29, "label": "Brunel", "shape": "dot", "title": "Brunel"}, {"color": "yellow", "font": {"color": "white"}, "id": 183, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 30, "label": "shield", "shape": "dot", "title": "shield"}, {"color": "green", "font": {"color": "white"}, "id": 31, "label": "Blanchard", "shape": "dot", "title": "Blanchard"}, {"color": "yellow", "font": {"color": "white"}, "id": 184, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 33, "label": "lathe", "shape": "dot", "title": "lathe"}, {"color": "yellow", "font": {"color": "white"}, "id": 185, "label": "copy", "shape": "dot", "title": "copy"}, {"color": "blue", "font": {"color": "white"}, "id": 34, "label": "shapes", "shape": "dot", "title": "shapes"}, {"color": "yellow", "font": {"color": "white"}, "id": 186, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 36, "label": "Heliography", "shape": "dot", "title": "Heliography"}, {"color": "green", "font": {"color": "white"}, "id": 37, "label": "D\u00f6bereiner", "shape": "dot", "title": "D\u00f6bereiner"}, {"color": "yellow", "font": {"color": "white"}, "id": 187, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 38, "label": "lighter", "shape": "dot", "title": "lighter"}, {"color": "green", "font": {"color": "white"}, "id": 39, "label": "Dreyse", "shape": "dot", "title": "Dreyse"}, {"color": "yellow", "font": {"color": "white"}, "id": 188, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 82, "label": "rifle", "shape": "dot", "title": "rifle"}, {"color": "green", "font": {"color": "white"}, "id": 41, "label": "Sturgeon", "shape": "dot", "title": "Sturgeon"}, {"color": "yellow", "font": {"color": "white"}, "id": 189, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 42, "label": "electromagnet", "shape": "dot", "title": "electromagnet"}, {"color": "green", "font": {"color": "white"}, "id": 43, "label": "Walker", "shape": "dot", "title": "Walker"}, {"color": "yellow", "font": {"color": "white"}, "id": 190, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 44, "label": "match", "shape": "dot", "title": "match"}, {"color": "green", "font": {"color": "white"}, "id": 45, "label": "Neilson", "shape": "dot", "title": "Neilson"}, {"color": "yellow", "font": {"color": "white"}, "id": 191, "label": "develop", "shape": "dot", "title": "develop"}, {"color": "green", "font": {"color": "white"}, "id": 125, "label": "Bell", "shape": "dot", "title": "Bell"}, {"color": "yellow", "font": {"color": "white"}, "id": 192, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 49, "label": "Jedlik", "shape": "dot", "title": "Jedlik"}, {"color": "yellow", "font": {"color": "white"}, "id": 193, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 51, "label": "Mann", "shape": "dot", "title": "Mann"}, {"color": "yellow", "font": {"color": "white"}, "id": 194, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 52, "label": "compressor", "shape": "dot", "title": "compressor"}, {"color": "green", "font": {"color": "white"}, "id": 53, "label": "Budding", "shape": "dot", "title": "Budding"}, {"color": "yellow", "font": {"color": "white"}, "id": 195, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 54, "label": "mower", "shape": "dot", "title": "mower"}, {"color": "green", "font": {"color": "white"}, "id": 55, "label": "Faraday", "shape": "dot", "title": "Faraday"}, {"color": "yellow", "font": {"color": "white"}, "id": 196, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 136, "label": "method", "shape": "dot", "title": "method"}, {"color": "green", "font": {"color": "white"}, "id": 57, "label": "Jacobi", "shape": "dot", "title": "Jacobi"}, {"color": "yellow", "font": {"color": "white"}, "id": 197, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 58, "label": "motor", "shape": "dot", "title": "motor"}, {"color": "green", "font": {"color": "white"}, "id": 59, "label": "Henry", "shape": "dot", "title": "Henry"}, {"color": "yellow", "font": {"color": "white"}, "id": 198, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 60, "label": "relay", "shape": "dot", "title": "relay"}, {"color": "green", "font": {"color": "white"}, "id": 61, "label": "Morse", "shape": "dot", "title": "Morse"}, {"color": "yellow", "font": {"color": "white"}, "id": 199, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 62, "label": "code", "shape": "dot", "title": "code"}, {"color": "green", "font": {"color": "white"}, "id": 87, "label": "Otis", "shape": "dot", "title": "Otis"}, {"color": "yellow", "font": {"color": "white"}, "id": 200, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 64, "label": "shovel", "shape": "dot", "title": "shovel"}, {"color": "green", "font": {"color": "white"}, "id": 65, "label": "Nasmyth", "shape": "dot", "title": "Nasmyth"}, {"color": "yellow", "font": {"color": "white"}, "id": 201, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 66, "label": "hammer", "shape": "dot", "title": "hammer"}, {"color": "green", "font": {"color": "white"}, "id": 67, "label": "Becquerel", "shape": "dot", "title": "Becquerel"}, {"color": "yellow", "font": {"color": "white"}, "id": 202, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 69, "label": "Bain", "shape": "dot", "title": "Bain"}, {"color": "yellow", "font": {"color": "white"}, "id": 203, "label": "devise", "shape": "dot", "title": "devise"}, {"color": "green", "font": {"color": "white"}, "id": 71, "label": "Grove", "shape": "dot", "title": "Grove"}, {"color": "yellow", "font": {"color": "white"}, "id": 204, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 72, "label": "cell", "shape": "dot", "title": "cell"}, {"color": "green", "font": {"color": "white"}, "id": 89, "label": "invents", "shape": "dot", "title": "invents"}, {"color": "yellow", "font": {"color": "white"}, "id": 205, "label": "superphosphate", "shape": "dot", "title": "superphosphate"}, {"color": "blue", "font": {"color": "white"}, "id": 74, "label": "fertilizer", "shape": "dot", "title": "fertilizer"}, {"color": "green", "font": {"color": "white"}, "id": 75, "label": "Johnson", "shape": "dot", "title": "Johnson"}, {"color": "yellow", "font": {"color": "white"}, "id": 206, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 76, "label": "cement", "shape": "dot", "title": "cement"}, {"color": "green", "font": {"color": "white"}, "id": 77, "label": "Maus", "shape": "dot", "title": "Maus"}, {"color": "yellow", "font": {"color": "white"}, "id": 207, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 79, "label": "Couch", "shape": "dot", "title": "Couch"}, {"color": "yellow", "font": {"color": "white"}, "id": 208, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 80, "label": "drill", "shape": "dot", "title": "drill"}, {"color": "green", "font": {"color": "white"}, "id": 81, "label": "Hunt", "shape": "dot", "title": "Hunt"}, {"color": "yellow", "font": {"color": "white"}, "id": 209, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 83, "label": "Francis", "shape": "dot", "title": "Francis"}, {"color": "yellow", "font": {"color": "white"}, "id": 210, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 150, "label": "turbine", "shape": "dot", "title": "turbine"}, {"color": "green", "font": {"color": "white"}, "id": 85, "label": "Armstrong", "shape": "dot", "title": "Armstrong"}, {"color": "yellow", "font": {"color": "white"}, "id": 211, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 86, "label": "accumulator", "shape": "dot", "title": "accumulator"}, {"color": "yellow", "font": {"color": "white"}, "id": 212, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 88, "label": "elevator", "shape": "dot", "title": "elevator"}, {"color": "yellow", "font": {"color": "white"}, "id": 213, "label": "reinforce", "shape": "dot", "title": "reinforce"}, {"color": "blue", "font": {"color": "white"}, "id": 90, "label": "concrete", "shape": "dot", "title": "concrete"}, {"color": "green", "font": {"color": "white"}, "id": 91, "label": "Maxwell", "shape": "dot", "title": "Maxwell"}, {"color": "yellow", "font": {"color": "white"}, "id": 214, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 93, "label": "Bessemer", "shape": "dot", "title": "Bessemer"}, {"color": "yellow", "font": {"color": "white"}, "id": 215, "label": "patent", "shape": "dot", "title": "patent"}, {"color": "green", "font": {"color": "white"}, "id": 95, "label": "Harrison", "shape": "dot", "title": "Harrison"}, {"color": "yellow", "font": {"color": "white"}, "id": 216, "label": "produce", "shape": "dot", "title": "produce"}, {"color": "green", "font": {"color": "white"}, "id": 97, "label": "Perkin", "shape": "dot", "title": "Perkin"}, {"color": "yellow", "font": {"color": "white"}, "id": 217, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 98, "label": "Mauveine", "shape": "dot", "title": "Mauveine"}, {"color": "green", "font": {"color": "white"}, "id": 99, "label": "Geissler", "shape": "dot", "title": "Geissler"}, {"color": "yellow", "font": {"color": "white"}, "id": 218, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 100, "label": "tube", "shape": "dot", "title": "tube"}, {"color": "green", "font": {"color": "white"}, "id": 101, "label": "Plant\u00e9", "shape": "dot", "title": "Plant\u00e9"}, {"color": "yellow", "font": {"color": "white"}, "id": 219, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 146, "label": "battery", "shape": "dot", "title": "battery"}, {"color": "green", "font": {"color": "white"}, "id": 131, "label": "Swan", "shape": "dot", "title": "Swan"}, {"color": "yellow", "font": {"color": "white"}, "id": 220, "label": "produce", "shape": "dot", "title": "produce"}, {"color": "blue", "font": {"color": "white"}, "id": 104, "label": "fibers", "shape": "dot", "title": "fibers"}, {"color": "green", "font": {"color": "white"}, "id": 105, "label": "Pasteur", "shape": "dot", "title": "Pasteur"}, {"color": "yellow", "font": {"color": "white"}, "id": 221, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 107, "label": "Martin", "shape": "dot", "title": "Martin"}, {"color": "yellow", "font": {"color": "white"}, "id": 222, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 109, "label": "Mendel", "shape": "dot", "title": "Mendel"}, {"color": "yellow", "font": {"color": "white"}, "id": 223, "label": "publish", "shape": "dot", "title": "publish"}, {"color": "blue", "font": {"color": "white"}, "id": 110, "label": "Experiments", "shape": "dot", "title": "Experiments"}, {"color": "green", "font": {"color": "white"}, "id": 111, "label": "Nobel", "shape": "dot", "title": "Nobel"}, {"color": "yellow", "font": {"color": "white"}, "id": 224, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 112, "label": "Dynamite", "shape": "dot", "title": "Dynamite"}, {"color": "green", "font": {"color": "white"}, "id": 113, "label": "Smith", "shape": "dot", "title": "Smith"}, {"color": "yellow", "font": {"color": "white"}, "id": 225, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 114, "label": "wire", "shape": "dot", "title": "wire"}, {"color": "green", "font": {"color": "white"}, "id": 115, "label": "Woods", "shape": "dot", "title": "Woods"}, {"color": "yellow", "font": {"color": "white"}, "id": 226, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 116, "label": "steel", "shape": "dot", "title": "steel"}, {"color": "green", "font": {"color": "white"}, "id": 117, "label": "Ransome", "shape": "dot", "title": "Ransome"}, {"color": "yellow", "font": {"color": "white"}, "id": 227, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 118, "label": "kiln", "shape": "dot", "title": "kiln"}, {"color": "green", "font": {"color": "white"}, "id": 119, "label": "Crookes", "shape": "dot", "title": "Crookes"}, {"color": "yellow", "font": {"color": "white"}, "id": 228, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 120, "label": "radiometer", "shape": "dot", "title": "radiometer"}, {"color": "green", "font": {"color": "white"}, "id": 121, "label": "Gramme", "shape": "dot", "title": "Gramme"}, {"color": "yellow", "font": {"color": "white"}, "id": 229, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 122, "label": "generator", "shape": "dot", "title": "generator"}, {"color": "green", "font": {"color": "white"}, "id": 123, "label": "Otto", "shape": "dot", "title": "Otto"}, {"color": "yellow", "font": {"color": "white"}, "id": 230, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 124, "label": "cycle", "shape": "dot", "title": "cycle"}, {"color": "yellow", "font": {"color": "white"}, "id": 231, "label": "have", "shape": "dot", "title": "have"}, {"color": "blue", "font": {"color": "white"}, "id": 126, "label": "patent", "shape": "dot", "title": "patent"}, {"color": "green", "font": {"color": "white"}, "id": 133, "label": "Edison", "shape": "dot", "title": "Edison"}, {"color": "yellow", "font": {"color": "white"}, "id": 232, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 128, "label": "phonograph", "shape": "dot", "title": "phonograph"}, {"color": "green", "font": {"color": "white"}, "id": 129, "label": "Pelton", "shape": "dot", "title": "Pelton"}, {"color": "yellow", "font": {"color": "white"}, "id": 233, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 130, "label": "wheel", "shape": "dot", "title": "wheel"}, {"color": "yellow", "font": {"color": "white"}, "id": 234, "label": "have", "shape": "dot", "title": "have"}, {"color": "blue", "font": {"color": "white"}, "id": 132, "label": "resistance", "shape": "dot", "title": "resistance"}, {"color": "yellow", "font": {"color": "white"}, "id": 235, "label": "design", "shape": "dot", "title": "design"}, {"color": "blue", "font": {"color": "white"}, "id": 134, "label": "bulb", "shape": "dot", "title": "bulb"}, {"color": "green", "font": {"color": "white"}, "id": 135, "label": "Benardos", "shape": "dot", "title": "Benardos"}, {"color": "yellow", "font": {"color": "white"}, "id": 236, "label": "present", "shape": "dot", "title": "present"}, {"color": "green", "font": {"color": "white"}, "id": 137, "label": "Maxim", "shape": "dot", "title": "Maxim"}, {"color": "yellow", "font": {"color": "white"}, "id": 237, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 138, "label": "gun", "shape": "dot", "title": "gun"}, {"color": "green", "font": {"color": "white"}, "id": 139, "label": "Vieille", "shape": "dot", "title": "Vieille"}, {"color": "yellow", "font": {"color": "white"}, "id": 238, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 140, "label": "B", "shape": "dot", "title": "B"}, {"color": "green", "font": {"color": "white"}, "id": 141, "label": "Parsons", "shape": "dot", "title": "Parsons"}, {"color": "yellow", "font": {"color": "white"}, "id": 239, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 143, "label": "Starley", "shape": "dot", "title": "Starley"}, {"color": "yellow", "font": {"color": "white"}, "id": 240, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 144, "label": "bicycle", "shape": "dot", "title": "bicycle"}, {"color": "green", "font": {"color": "white"}, "id": 145, "label": "Gassner", "shape": "dot", "title": "Gassner"}, {"color": "yellow", "font": {"color": "white"}, "id": 241, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 148, "label": "Hall", "shape": "dot", "title": "Hall"}, {"color": "yellow", "font": {"color": "white"}, "id": 242, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 149, "label": "Blyth", "shape": "dot", "title": "Blyth"}, {"color": "yellow", "font": {"color": "white"}, "id": 243, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 151, "label": "Robert", "shape": "dot", "title": "Robert"}, {"color": "yellow", "font": {"color": "white"}, "id": 244, "label": "develop", "shape": "dot", "title": "develop"}, {"color": "green", "font": {"color": "white"}, "id": 153, "label": "Loud", "shape": "dot", "title": "Loud"}, {"color": "yellow", "font": {"color": "white"}, "id": 245, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 154, "label": "pen", "shape": "dot", "title": "pen"}, {"color": "green", "font": {"color": "white"}, "id": 155, "label": "Hertz", "shape": "dot", "title": "Hertz"}, {"color": "yellow", "font": {"color": "white"}, "id": 246, "label": "publish", "shape": "dot", "title": "publish"}, {"color": "blue", "font": {"color": "white"}, "id": 156, "label": "proof", "shape": "dot", "title": "proof"}, {"color": "green", "font": {"color": "white"}, "id": 157, "label": "Swarts", "shape": "dot", "title": "Swarts"}, {"color": "yellow", "font": {"color": "white"}, "id": 247, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 158, "label": "chlorofluorocarbons", "shape": "dot", "title": "chlorofluorocarbons"}, {"color": "green", "font": {"color": "white"}, "id": 159, "label": "Ader", "shape": "dot", "title": "Ader"}, {"color": "yellow", "font": {"color": "white"}, "id": 248, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 160, "label": "aircraft", "shape": "dot", "title": "aircraft"}, {"color": "green", "font": {"color": "white"}, "id": 161, "label": "Bouly", "shape": "dot", "title": "Bouly"}, {"color": "yellow", "font": {"color": "white"}, "id": 249, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 162, "label": "cinematograph", "shape": "dot", "title": "cinematograph"}, {"color": "green", "font": {"color": "white"}, "id": 163, "label": "Diesel", "shape": "dot", "title": "Diesel"}, {"color": "yellow", "font": {"color": "white"}, "id": 250, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "green", "font": {"color": "white"}, "id": 165, "label": "R\u00f6ntgen", "shape": "dot", "title": "R\u00f6ntgen"}, {"color": "yellow", "font": {"color": "white"}, "id": 251, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 166, "label": "radiograph", "shape": "dot", "title": "radiograph"}, {"color": "green", "font": {"color": "white"}, "id": 167, "label": "Jungner", "shape": "dot", "title": "Jungner"}, {"color": "yellow", "font": {"color": "white"}, "id": 252, "label": "invent", "shape": "dot", "title": "invent"}, {"color": "blue", "font": {"color": "white"}, "id": 168, "label": "nickel", "shape": "dot", "title": "nickel"}]);
+        edges = new vis.DataSet([{"from": 1, "to": 169}, {"from": 169, "to": 2}, {"from": 3, "to": 170}, {"from": 170, "to": 4}, {"from": 5, "to": 171}, {"from": 171, "to": 6}, {"from": 7, "to": 172}, {"from": 172, "to": 8}, {"from": 35, "to": 173}, {"from": 35, "to": 186}, {"from": 173, "to": 164}, {"from": 164, "to": 181}, {"from": 164, "to": 250}, {"from": 11, "to": 174}, {"from": 174, "to": 12}, {"from": 13, "to": 175}, {"from": 175, "to": 14}, {"from": 15, "to": 176}, {"from": 176, "to": 152}, {"from": 152, "to": 191}, {"from": 152, "to": 215}, {"from": 152, "to": 221}, {"from": 152, "to": 222}, {"from": 152, "to": 244}, {"from": 17, "to": 177}, {"from": 177, "to": 18}, {"from": 19, "to": 178}, {"from": 178, "to": 20}, {"from": 21, "to": 179}, {"from": 179, "to": 96}, {"from": 96, "to": 192}, {"from": 96, "to": 193}, {"from": 96, "to": 207}, {"from": 96, "to": 216}, {"from": 23, "to": 180}, {"from": 180, "to": 70}, {"from": 70, "to": 203}, {"from": 25, "to": 181}, {"from": 27, "to": 182}, {"from": 182, "to": 28}, {"from": 29, "to": 183}, {"from": 183, "to": 30}, {"from": 31, "to": 184}, {"from": 184, "to": 33}, {"from": 33, "to": 185}, {"from": 185, "to": 34}, {"from": 186, "to": 36}, {"from": 37, "to": 187}, {"from": 187, "to": 38}, {"from": 39, "to": 188}, {"from": 188, "to": 82}, {"from": 82, "to": 209}, {"from": 41, "to": 189}, {"from": 189, "to": 42}, {"from": 43, "to": 190}, {"from": 190, "to": 44}, {"from": 45, "to": 191}, {"from": 125, "to": 192}, {"from": 125, "to": 231}, {"from": 49, "to": 193}, {"from": 51, "to": 194}, {"from": 194, "to": 52}, {"from": 53, "to": 195}, {"from": 195, "to": 54}, {"from": 55, "to": 196}, {"from": 196, "to": 136}, {"from": 136, "to": 202}, {"from": 136, "to": 214}, {"from": 136, "to": 236}, {"from": 57, "to": 197}, {"from": 197, "to": 58}, {"from": 59, "to": 198}, {"from": 198, "to": 60}, {"from": 61, "to": 199}, {"from": 199, "to": 62}, {"from": 87, "to": 200}, {"from": 87, "to": 212}, {"from": 200, "to": 64}, {"from": 65, "to": 201}, {"from": 201, "to": 66}, {"from": 67, "to": 202}, {"from": 69, "to": 203}, {"from": 71, "to": 204}, {"from": 204, "to": 72}, {"from": 89, "to": 205}, {"from": 89, "to": 213}, {"from": 205, "to": 74}, {"from": 75, "to": 206}, {"from": 206, "to": 76}, {"from": 77, "to": 207}, {"from": 79, "to": 208}, {"from": 208, "to": 80}, {"from": 81, "to": 209}, {"from": 83, "to": 210}, {"from": 210, "to": 150}, {"from": 150, "to": 239}, {"from": 150, "to": 243}, {"from": 85, "to": 211}, {"from": 211, "to": 86}, {"from": 212, "to": 88}, {"from": 213, "to": 90}, {"from": 91, "to": 214}, {"from": 93, "to": 215}, {"from": 95, "to": 216}, {"from": 97, "to": 217}, {"from": 217, "to": 98}, {"from": 99, "to": 218}, {"from": 218, "to": 100}, {"from": 101, "to": 219}, {"from": 219, "to": 146}, {"from": 146, "to": 241}, {"from": 131, "to": 220}, {"from": 131, "to": 234}, {"from": 220, "to": 104}, {"from": 105, "to": 221}, {"from": 107, "to": 222}, {"from": 109, "to": 223}, {"from": 223, "to": 110}, {"from": 111, "to": 224}, {"from": 224, "to": 112}, {"from": 113, "to": 225}, {"from": 225, "to": 114}, {"from": 115, "to": 226}, {"from": 226, "to": 116}, {"from": 117, "to": 227}, {"from": 227, "to": 118}, {"from": 119, "to": 228}, {"from": 228, "to": 120}, {"from": 121, "to": 229}, {"from": 229, "to": 122}, {"from": 123, "to": 230}, {"from": 230, "to": 124}, {"from": 231, "to": 126}, {"from": 133, "to": 232}, {"from": 133, "to": 235}, {"from": 232, "to": 128}, {"from": 129, "to": 233}, {"from": 233, "to": 130}, {"from": 234, "to": 132}, {"from": 235, "to": 134}, {"from": 135, "to": 236}, {"from": 137, "to": 237}, {"from": 237, "to": 138}, {"from": 139, "to": 238}, {"from": 238, "to": 140}, {"from": 141, "to": 239}, {"from": 143, "to": 240}, {"from": 240, "to": 144}, {"from": 145, "to": 241}, {"from": 148, "to": 242}, {"from": 149, "to": 243}, {"from": 151, "to": 244}, {"from": 153, "to": 245}, {"from": 245, "to": 154}, {"from": 155, "to": 246}, {"from": 246, "to": 156}, {"from": 157, "to": 247}, {"from": 247, "to": 158}, {"from": 159, "to": 248}, {"from": 248, "to": 160}, {"from": 161, "to": 249}, {"from": 249, "to": 162}, {"from": 163, "to": 250}, {"from": 165, "to": 251}, {"from": 251, "to": 166}, {"from": 167, "to": 252}, {"from": 252, "to": 168}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

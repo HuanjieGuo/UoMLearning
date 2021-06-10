@@ -1,0 +1,74 @@
+The first Zeppelin is designed by Theodor Kober.
+The first motorized cleaner using suction, a powered "vacuum cleaner", is patented independently by British engineer Hubert Cecil Booth and American inventor David T. Kenney.
+The first successful gas turbine is invented by Ægidius Elling.
+Édouard Bénédictus invents laminated glass.
+First manually controlled, fixed wing, motorized aircraft flies at Kitty Hawk, North Carolina by Orville and Wilbur Wright. See Claims to the first powered flight.
+The Fleming valve, the first vacuum tube and diode, is invented by John Ambrose Fleming.
+The first free flight of a rotary-wing aircraft is carried out by Paul Cornu.
+Leo Baekeland invents bakelite.
+Cellophane is invented by Jacques E. Brandenberger.
+Fritz Haber invents the Haber process.
+The first instantaneous transmission of images, or television broadcast, is carried out by Georges Rignoux and A. Fournier.
+The cloud chamber, the first particle detector, is invented by Charles Thomson Rees Wilson.
+The Bergius process is developed by Friedrich Bergius.
+The Kaplan turbine is invented by Viktor Kaplan.
+The first operational military tanks are designed, in Great Britain and France. They are used in battle from 1916 and 1917 respectively. In Britain the designers are Walter Wilson and William Tritton; in France, Eugène Brillié. (Although it is known that vehicles incorporating at least some of the features of the tank were designed in a number of countries from 1903 onwards, none reached a practical form.)
+The Czochralski process, widely used for the production of single crystal silicon, is invented by Jan Czochralski.
+The crystal oscillator is invented by Alexander M. Nicholson using a crystal of Rochelle Salt although his priority was disputed by Walter Guyton Cady
+The Fischer–Tropsch process is developed by Franz Fischer and Hans Tropsch at the Kaiser-Wilhelm-Institut für Kohlenforschung.
+The Yagi-Uda Antenna or simply Yagi Antenna is invented by Shintaro Uda of Tohoku Imperial University, Japan, assisted by his colleague Hidetsugu Yagi. The Yagi Antenna was widely used by the US, British, and Germans during World War II. After the war they saw extensive development as home television antennas.
+Robert H. Goddard launches the first liquid fueled rocket.
+The quartz clock is invented by Warren Marrison and J.W. Horton at Bell Telephone Laboratories.
+Penicillin is first observed to exude antibiotic substances by Nobel laureate Alexander Fleming. Development of medicinal penicillin is attributed to a team of medics and scientists including Howard Walter Florey, Ernst Chain and Norman Heatley.
+Frank Whittle formally submitted his ideas for a turbo-jet engine. In October 1929, he developed his ideas further. On 16 January 1930 in England, Whittle submitted his first patent (granted in 1932).
+Philo Farnsworth demonstrates the first practical electronic television to the press.
+The ball screw is invented by Rudolph G. Boehm.
+The Phase-contrast microscopy is invented by Frits Zernike.
+The electron microscope is invented by Ernst Ruska.
+FM radio is patented by inventor Edwin H. Armstrong.
+Nylon, the first fully synthetic fiber is produced by Wallace Carothers while working at DuPont.
+Z1 built by Konrad Zuse is the first freely programmable computer in the world.
+Nuclear fission discovered in experiment by Otto Hahn (Nazi Germany), coined by Lise Meitner (fled to Sweden from Nazi-occupied Austria) and Fritz Strassman (Sweden). The Manhattan Project, and consequently the Soviet atomic bomb project were begun based on this research, as well as the German nuclear energy project, although the latter one declined as its physicists were drafted into Germany's war effort.
+G. S. Yunyev or Naum Gurvich invented the electric current defibrillator
+Polyester is invented by British scientists John Whinfield and James Dickson.
+The V-2 rocket, the world's first long range ballistic missile, developed in Nazi Germany during World War II.
+The atomic bomb is first successfully developed by the United States, the United Kingdom and Canada as a part of the Manhattan Project and swiftly deployed in August 1945 in the atomic bombings of Hiroshima and Nagasaki, effectively terminating World War II.
+Sir James Martin invents the ejector seat, inspired by the death of his friend and test pilot Captain Valentine Baker in an aeroplane crash in 1942.
+Holography is invented by Dennis Gabor.
+Floyd Farris and J.B. Clark (Stanolind Oil and Gas Corporation) invents hydraulic fracturing technology.
+The first transistor, a bipolar point-contact transistor, is invented by John Bardeen and Walter Brattain under the supervision of William Shockley at Bell Labs.
+The first atomic clock is developed at the United States's National Bureau of Standards.
+Basic oxygen steelmaking is developed by Robert Durrer. The vast majority of steel manufactured in the world is produced using the basic oxygen furnace; in 2000, it accounted for 60% of global steel output.
+First use of nuclear power to produce electricity for households in Arco, Idaho
+The float glass process is developed by Alastair Pilkington.
+The first thermonuclear weapon is developed by the United States of America.
+The first video tape recorder, a helical scan recorder, is invented by Norikazu Sawazaki.
+Invention of Solar Battery by Bell Telephone scientists, Calvin Souther Fuller, Daryl Chapin and Gerald Pearson capturing the sun's power. First practical means of collecting energy from the sun and turning it into a current of electricity.
+The hovercraft is patented by Christopher Cockerell.
+The intermodal container is developed by Malcom McLean.
+The hard disk drive is invented by IBM.
+The first personal computer used by one person and controlled by a keyboard, the IBM 610, is invented in 1957 by IBM.
+The first artificial satellite, Sputnik 1, is built and launched by the Soviet Union.
+Independent invention of the integrated circuit by Jack Kilby and Robert Noyce.
+The MOSFET (MOS transistor) is invented by Mohamed Atalla and Dawon Kahng at Bell Labs. It is used in almost all modern electronic products. It was smaller, faster, more reliable and cheaper to manufacture than earlier bipolar transistors, leading to a revolution in computers, controls and communication.
+The first functioning laser is invented by Theodore Maiman.
+The first electronic cigarette is created by Herbert A. Gilbert. Hon Lik is often credited with its invention as he developed the modern electronic cigarette and was the first to commercialize it.
+Kevlar is invented by Stephanie Kwolek at DuPont.
+ARPANET first deployed via UCLA, SRI, UCSB, and The University of Utah.
+The pocket calculator is invented in Japan.
+Email is invented by Ray Tomlinson.
+The first single-chip microprocessor, the Intel 4004, is invented. Its development was led by Federico Faggin, using his silicon-gate MOS technology. This led to the personal computer (PC) revolution.
+The first video game console, used primarily for playing video games on a TV, is the Magnavox Odyssey.
+The first commercial graphical user interface is introduced in 1973 on the Xerox Alto. The modern GUI is later popularized by the Xerox Star and Apple Lisa.
+The first capacitive touchscreen is developed at CERN.
+The Internet protocol suite (TCP/IP) is proposed by Vinton Cerf and Robert E. Kahn for the Defense Advanced Research Projects Agency (DARPA) ARPANET, creating the basis for the modern Internet.
+Altair 8800 is the spark that ignited the microcomputer revolution.
+Flash memory (both NOR and NAND types) is invented in Japan by Fujio Masuoka while working for Toshiba. It is formally introduced to the public in 1984.
+A CD-ROM contains data accessible to, but not writable by, a computer for data storage and music playback. The 1985 Yellow Book standard developed by Sony and Philips adapted the format to hold any form of binary data.
+Stereolithography is invented by Chuck Hull.
+The first commercially available cell phone, the DynaTAC 8000X, is created by Motorola.
+The lithium-ion battery is invented by John B. Goodenough, Rachid Yazami and Akira Yoshino. It has impacted modern consumer electronics and electric vehicles.
+The World Wide Web is first introduced to the public by English engineer and computer scientist Sir Tim Berners-Lee.
+Mosaic, the first popular web browser is introduced
+The video game console, PlayStation released by Sony.
+DVD is an optical disc storage format, invented and developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer higher storage capacity than Compact Discs while having the same dimensions.
